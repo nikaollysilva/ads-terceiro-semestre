@@ -1,12 +1,13 @@
-package br.com.bandtec.projeto03;
+package br.com.bandtec.projeto04;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TerceiroProjetoApplication {
+public class Projeto04Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TerceiroProjetoApplication.class, args);
+		SpringApplication.run(Projeto04Application.class, args);
 	}
+
 }
