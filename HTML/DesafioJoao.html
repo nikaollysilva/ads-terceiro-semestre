@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Titulo -->
+        <h2>Desafio</h2>
+        Qual voce acha que sera a primeira letra na sequencia?
+        <br>
+        <select id="select">
+            <option>--Selecione--</option>
+            <option value=1>A</option>
+            <option value=2>B</option>
+            <option value=3>C</option>
+            <option value=4>D</option>
+        </select>
+        <br>
+        <!-- botao com funcao-->
+        <button onclick="sortear()"> Sortear</button>
+        <br>
+        <span id="mensagem"></span>
+        <br>
+        <b>Quantidades de sorteio:</b> <span id="span_numeros_sorteio">0</span>
+        <br>
+        <b>Pontos:</b> <span id="span_pontos">0</span>
+        <br>
+        <img id="imagem1" src="A.jpeg" alt="" style="float: left; height: 200px;">
+        <img id="imagem2" src="B.jpeg" alt="" style="float: left; height: 200px;" >
+        <img id="imagem3" src="C.jpeg" alt="" style="float: left; height: 200px;">
+        <img id="imagem4" src="D.jpeg" alt="" style="float: left; height: 200px;">
+
+</body>
+
+</html>
+<script>
+// USE ESSE CODIGO COMO GUIA E NAO COMO COLA, NAO ADIANTA CONSEGUIR FAZER ESTE EXERCICIO COPIANDO E IR NAO CONSEGUIR FAZER 
+// A PROXIMA PROVA s2
+
+    //  contadorSorteio vai contar quantas vezes o usuario apertou o botao de sortear
+    contadorSorteio = 0;
+
+    //  pontos é a variavel onde eu irei guardar a pontuacao do meu usuario
+    var pontos = 0;
+
+// Funcao
+    function sortear() {
+        var sorteio1 = 0;
+        var sorteio2 = 0;
+        var sorteio3 = 0;
+        var soretio4 = 0;
+
+// Verificando seu meu usuario realmente selecionou algo, SE ele NAO selecionou, nao faco nada, apenas exisbo uma mensagem 
+// de aviso, SE ele SELECIONOU, executo o codigo normalmente.
+        if (select.value == "--Selecione--") {
+            mensagem.innerHTML = `Selecione sua aposta`;
+        } else {
+
+            // iniciando contador para meu while
+            var contador = 1;
+
+            // limpando a mensagem caso ela ja tenha sido exibida antes
+            mensagem.innerHTML = ``;
+
+            // uso o numero quatro, pq sao quatro imagens que terei que atribuir valor
+            while (contador <= 4) {
+                var sorteio = parseInt((Math.random() * 4) + 1);
+
+                // sorteando valor da primeira imagem
+                if (contador == 1) {
+                    sorteio1 = sorteio;
+
+                    if (sorteio1 == 1) {
+                        imagem1.src = "A.jpeg";
+                    } else if (sorteio1 == 2) {
+                        imagem1.src = "B.jpeg";
+                    } else if (sorteio1 == 3) {
+                        imagem1.src = "C.jpeg";
+                    } else {
+                        imagem1.src = "D.jpeg";
+                    }
+
+                    contador++;
+                     // sorteando valor da segunda imagem
+                } else if (contador == 2 && sorteio != sorteio1) {
+                    sorteio2 = sorteio;
+
+                    if (sorteio2 == 1) {
+                        imagem2.src = "A.jpeg";
+                    } else if (sorteio2 == 2) {
+                        imagem2.src = "B.jpeg";
+                    } else if (sorteio2 == 3) {
+                        imagem2.src = "C.jpeg";
+                    } else {
+                        imagem2.src = "D.jpeg";
+                    }
+
+                    contador++;
+                    // sorteando valor da segunda imagem
+                } else if (contador == 3 && sorteio != sorteio1 && sorteio != sorteio2) {
+                    sorteio3 = sorteio;
+
+                    if (sorteio3 == 1) {
+                        imagem3.src = "A.jpeg";
+                    } else if (sorteio3 == 2) {
+                        imagem3.src = "B.jpeg";
+                    } else if (sorteio3 == 3) {
+                        imagem3.src = "C.jpeg";
+                    } else {
+                        imagem3.src = "D.jpeg";
+                    }
+
+                    contador++;
+
+                    // sorteando valor da segunda imagem, perceba que verifico se o valor de sorteios anteriores sao diferentes 
+                    //  do sorteio atual. Se ele for igual esse if nao sera executado, nem os anteriores(devido o contador, em 
+                    // todas as validacoes), entao o contador sera add +1, ou seja o meu while executara ate um numero que nunca
+                    //  foi sorteado apareca. 
+                } else if (contador == 4 && sorteio != sorteio1 && sorteio != sorteio2 && sorteio != sorteio3) {
+                    sorteio4 = sorteio;
+
+                    if (sorteio4 == 1) {
+                        imagem4.src = "A.jpeg";
+                    } else if (sorteio4 == 2) {
+                        imagem4.src = "B.jpeg";
+                    } else if (sorteio4 == 3) {
+                        imagem4.src = "C.jpeg";
+                    } else {
+                        imagem4.src = "D.jpeg";
+                    }
+
+                    contador++;
+                }
+            }
+
+// exibindo mensagem e Adicionando pontos, usando meus sorteios e o valor selecionado pelo meu usuario.
+            if (select.value == sorteio1) {
+                pontos += 4;
+                mensagem.innerHTML = `Você ganhou +4 pontos`;
+            } else if (select.value == sorteio2) {
+                pontos += 3
+                mensagem.innerHTML = `Você ganhou +3 ponto`;
+            } else if (select.value == sorteio3) {
+                pontos += 2
+                mensagem.innerHTML = `Você ganhou +2 ponto`;
+            } else if (select.value == sorteio4) {
+                pontos += 1
+                mensagem.innerHTML = `Você ganhou +1 ponto`;
+            }
+// Exibindo pontos e a quantidade de sorteio
+            span_pontos.innerHTML = pontos;
+            // note que exibo e add +1, usando "++" antes, pq eu primeiro adiciono depois exibo, se eu colocasse o 
+            // "++" depois, sempre exibiria uma rodada a menos.
+            // Poderiamos fazer um contadorSorteio++ e depois apenas exibir. Fica a seu criterio.
+            span_numeros_sorteio.innerHTML = ++contadorSorteio
+        }
+    }
+
+</script>
